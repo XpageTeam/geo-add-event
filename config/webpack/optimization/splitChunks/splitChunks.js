@@ -1,7 +1,7 @@
 module.exports = {
     cacheGroups: {
         vendors: {
-            test: /^.*node_modules((?!imask|dom7|ssr-window|swiper|gsap).)*$/,
+            test: /^.*node_modules((?!dom7|ssr-window|swiper|gsap).)*$/,
             // test: /(node_modules)/,
             name: 'vendors',
             enforce: true,

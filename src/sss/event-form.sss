@@ -1,0 +1,41 @@
+.event-form
+	max-width: 490px
+	margin: 0 auto
+	height: 100%
+	overflow-y: auto
+
+	&::-webkit-scrollbar
+		width: 13px
+
+		&-track, &-thumb
+			border-left: 10px solid var(--main-color)
+
+		&-track
+			background-color: #6C6A6A
+
+		&-thumb
+			background-color: #fff
+
+	.form
+
+		&__inputs
+			counter-reset: i
+
+			&-input
+				position: relative
+				padding-left: 58px
+
+				&:not(.form__inputs-input--submit)
+					counter-increment: i
+					
+					&:before
+						content: counter(i)
+						flex: none
+						position: absolute
+						top: 40px
+						left: 0						
+						border-radius: 50%
+						text-align: center
+						size: 36px
+						line-height: 35px
+						color: #9DADD6 var(--second-color)

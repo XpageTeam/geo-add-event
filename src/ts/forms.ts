@@ -1,28 +1,47 @@
 import domReady from "./xpage/ready";
 import App from "./xpage/core";
-import Element from "./xpage/Element";
 import EventListener from "./xpage/EventListener";
 
 domReady(() => {
-	App.each(".default-input__input--file", (el: HTMLInputElement) => {
-		const textInput = new Element(el).closest(".default-input")
-							.find(".default-input__input[type='text']").getHTMLElement(0);
+	const curInputs = App.elementsGetter(".default-input__input--file");
 
-		new EventListener(textInput).add("click", (input: HTMLInputElement) => {
-			el.click()
-		})
+	console.log(curInputs)
 
-		new EventListener(el).add("change", (el: HTMLInputElement) => {
-			let files: Array<string> = [];
+	for (const input of curInputs)
+		observerFileInput(input);
+
+	const obsConfig: MutationObserverInit = {
+		childList: true,
+		subtree: true
+	};
+
+	const callback = (mutationList: Array<MutationRecord>) => {
+		for (const mutation of mutationList)
+			mutation.addedNodes.forEach((node: HTMLElement) => {
+				if (node && node.classList && node.classList.contains("default-input__input--file"))
+					observerFileInput(node);
+			});
+	};
+
+	const observer = new MutationObserver(callback);
+
+	observer.observe(document.body, obsConfig);
+});
+
+function observerFileInput(input: HTMLElement): void{
+	new EventListener(input).add("change", (el: HTMLInputElement) => {
+		const parent = el.closest(".default-input"),
+			fileNameField = parent.querySelector(".default-input__input[type=text]") as HTMLInputElement;
+
+		if (el.files.length){
+			let names = [];
 
 			for (let i = 0; i < el.files.length; i++)
-				files.push(el.files[i].name)
+				names.push(el.files[i].name)
 
-			if (!files.length)
-				(textInput as HTMLInputElement).value = ""
-			else{
-				(textInput as HTMLInputElement).value = files.join(", ")
-			}
-		})
+			fileNameField.value = names.join(", ");
+		}else{
+			fileNameField.value = "";
+		}
 	})
-})
+}

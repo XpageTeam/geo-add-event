@@ -5,10 +5,67 @@ html(lang="ru")
 		title Главная
 		include inc/head.pug
 		include inc/css.pug
-	body.main.loading
-		include inc/header.pug
-		main#content
-			.wrapper
-				
-		include inc/footer.pug
+	body.loading
+		.event-add#app
+			header.event-add__head.head
+				.wrapper
+					.head__wrap
+						.head__logo
+							a.logo(href="#")
+								include ../img/logo.svg
+						.head__city
+
+						.head__link
+							a.h-link(href="#") Перейти на сайт
+			main.event-add__content
+				.event-content
+			aside.event-add__form
+				.event-form
+					form(action="#")
+						.form__inputs
+							.form__inputs-input
+								.default-input
+									input.default-input__input.default-input__input--file(type="file" id="file")
+									.default-input__input_filetext
+										input.default-input__input(type="text" readonly="")
+										label.default-input__label--file(for="file") Обзор
+									label.default-input__label Загрузить фото
+							.form__inputs-input
+								.default-input
+									input.default-input__input.default-input__input--error(type="text")
+									label.default-input__label Название события
+									.default-input__error
+										.error-text 1q2324
+							.form__inputs-input
+								.default-input
+									input.default-input__input(type="text")
+									label.default-input__label Место проведения
+							.form__inputs-input
+								.default-input
+									input.default-input__input(type="text")
+									label.default-input__label Дата проведения 
+							.form__inputs-input
+								.default-input
+									textarea.default-input__input.default-input__input--textarea
+									label.default-input__label Опишите подробно событие
+							.form__inputs-input
+								.default-input
+									input.default-input__input(type="text")
+									label.default-input__label ФИО
+							.form__inputs-input
+								.default-input
+									input.default-input__input(type="tel" placeholder="+7 (000) 000-00-00")
+									label.default-input__label Номер телефона
+							.form__inputs-input.form__inputs-input--submit
+								button.default-btn(type="submit")
+									<!-- file_get_contents(/img/ico-speaker.svg) -->
+									include ../img/ico-speaker.svg
+									span.default-btn__text В редакцию
+		
+		script
+			| function setViewportProperty(){
+			| 	document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
+			| }
+			| window.addEventListener('resize', setViewportProperty);
+			| setViewportProperty();
 		include inc/scripts.pug

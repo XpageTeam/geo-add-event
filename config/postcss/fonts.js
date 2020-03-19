@@ -2,31 +2,19 @@ module.exports = {
 	formats: 'local woff woff2',
 	display: "swap",
 	custom: {
-		"Montserat": {
+		"Formular": {
 			variants: {
 				normal: {
-					300: {
-						url: {
-							woff: "../fonts/montserrat-light.woff",
-							woff2: "../fonts/montserrat-light.woff2"
-						}
-					},
 					400: {
 						url: {
-							woff: "../fonts/montserrat-regular.woff",
-							woff2: "../fonts/montserrat-regular.woff2"
+							woff: "../fonts/Formular/formular-webfont.woff",
+							woff2: "../fonts/Formular/formular-webfont.woff2"
 						}
 					},
-					500: {
-						url: {
-							woff: "../fonts/montserrat-medium.woff",
-							woff2: "../fonts/montserrat-medium.woff2"
-						}
-					}, 
 					700: {
 						url: {
-							woff: "../fonts/montserrat-bold.woff",
-							woff2: "../fonts/montserrat-bold.woff2"
+							woff: "../fonts/Formular/formular-bold-webfont.woff",
+							woff2: "../fonts/Formular/formular-bold-webfont.woff2"
 						}
 					}
 				}

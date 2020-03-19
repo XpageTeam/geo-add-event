@@ -5,9 +5,10 @@ const $ = require("gulp-load-plugins")(),
 	browserSync = require("browser-sync").create(),
 	gutil = require("gulp-util"),
 	sourcemaps = require("gulp-sourcemaps"),
+	sftp = require("gulp-sftp-up4"),
 	ftp = require("vinyl-ftp");
 
-let process = require("child_process"),
+const process = require("child_process"),
 	connectionSettings = require("./accesses/accesses.js");
 
 const templatePath = connectionSettings.server.path;
@@ -22,17 +23,6 @@ const xpager_conn = ftp.create({
 	parallel: 2,
 	log: gutil.log
 });
-
-
-const server_conn = ftp.create({
-	host:      connectionSettings.server.host,
-	user:      connectionSettings.server.user,
-	password:  connectionSettings.server.password,
-	parallel: 1,
-	log: gutil.log
-});
-
-
 
 gulp.task('browser-sync', () =>  {
 	browserSync.init({
@@ -67,6 +57,7 @@ gulp.task("postcss", _ =>
 			require("postcss-flexbugs-fixes"),
 			require("postcss-nesting"),
 			require("postcss-nested"),
+			require("postcss-viewport-height-correction"),
 			require("postcss-font-magician")(require("./config/postcss/fonts.js")),
 			require("cssnano"),
 		], {parser: require("sugarss")})).on("error", $.notify.onError())
@@ -81,11 +72,6 @@ gulp.task("pug", _ =>
 	gulp.src("src/pug/*.pug")
 		.pipe($.pug({pretty: true}))
 		.pipe(gulp.dest("docs"))
-);
-
-gulp.task("move:workers", () => 
-	gulp.src("src/js/workers/**/*", {since: gulp.lastRun("move:workers")})
-		.pipe(gulp.dest("docs/js/workers"))
 );
 
 gulp.task("move:fonts", _ => 
@@ -125,17 +111,32 @@ gulp.task('imagemin', () =>
 
 gulp.task("deploy:css", () => 
 	gulp.src("docs/css/*.*", {since: gulp.lastRun("postcss")})
-		.pipe(server_conn.dest(remotePathCss))
+		.pipe(sftp({
+			host: connectionSettings.server.host,
+			user: connectionSettings.server.user,
+			pass: connectionSettings.server.password,
+			remotePath: remotePathCss
+		}))
 );
 
 gulp.task("deploy:js", () => 
 	gulp.src("docs/js/*.*", {since: gulp.lastRun("deploy:js")})
-		.pipe(server_conn.dest(remotePathJs))
+	.pipe(sftp({
+		host: connectionSettings.server.host,
+		user: connectionSettings.server.user,
+		pass: connectionSettings.server.password,
+		remotePath: remotePathJs
+	}))
 );
 
 gulp.task("deploy:img", () => 
 	gulp.src("docs/img/**/*", {since: gulp.lastRun("deploy:img")})
-		.pipe(server_conn.dest(remotePathImg))
+		.pipe(sftp({
+			host: connectionSettings.server.host,
+			user: connectionSettings.server.user,
+			pass: connectionSettings.server.password,
+			remotePath: remotePathImg
+		}))
 );
 
 gulp.task("deploy:docs", _ => 
@@ -150,7 +151,6 @@ gulp.task("deploy", gulp.series(gulp.parallel("postcss", "pug", "imagemin"), "de
 const local = _ => {
 	gulp.watch(["src/sss/**/*.sss"], gulp.series("postcss"));
 	gulp.watch('src/pug/**/*', gulp.series("pug"));
-	gulp.watch("src/js/workers/**/*", gulp.series("move:workers"));
 	gulp.watch("src/img/**/*", gulp.series("imagemin"));
 },
 localWebpack = () => {
@@ -164,6 +164,7 @@ watch = _ => {
 remoteWebpack = () => {
 	process.exec("npm run remoteWatch");
 };
+
 
 gulp.task("deploy-to-server", gulp.series(gulp.parallel("postcss", "pug", "imagemin", "move:files"), gulp.parallel(local, remoteWebpack, watch)));
 

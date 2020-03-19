@@ -1,5 +1,5 @@
 @import "../css/common.css"
-@import "../css/jquery.fancybox.css"
+// @import "../css/jquery.fancybox.css"
 
 @import "_vars.sss"
 @import "_base.sss"
@@ -8,3 +8,23 @@
 
 @import "base-form.sss"
 @import "my-select.sss"
+@import "head.sss"
+@import "event-form.sss"
+
+.event-add
+	height: 100vh
+	display: grid
+	grid-template-areas: "head aside" "content aside"
+	grid-template-columns: 1fr 705px
+	grid-template-rows: auto 100vh
+
+	&__head
+		grid-area: head
+
+	&__content
+		grid-area: content
+
+	&__form
+		grid-area: aside
+		background: var(--main-color)
+		padding: vh(90) vw(100)

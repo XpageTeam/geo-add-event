@@ -104,10 +104,9 @@ textarea.default-input__input
 
 	&__input
 		border: 1px solid var(--border-color)
-		border-radius: 5px
 		font-size: em(14)
-		color: inherit #fff
-		size: 100% 53px
+		color: inherit transparent
+		size: 100% 49px
 		transition: border-color .3s ease
 
 		&:not(&--select)
@@ -119,7 +118,7 @@ textarea.default-input__input
 		&--error
 
 			&:not(:focus, :valid)
-				color: var(--main-color)
+				color: #EB5757
 				border-color: currentColor
 
 				~ .default-input
@@ -128,7 +127,7 @@ textarea.default-input__input
 						opacity: 1
 
 		&:focus
-			border-color: var(--main-color)
+			border-color: var(--thrid-color)
 
 		&--select
 			padding: 10px 50px 10px 16px
@@ -149,6 +148,10 @@ textarea.default-input__input
 						&-cont
 							display: block
 
+		&_filetext
+			display: flex
+			align-items: flex-end
+
 		&--file
 			position: absolute 0 * * 0
 			opacity: 0
@@ -166,7 +169,8 @@ textarea.default-input__input
 			min-width: 100%
 			max-width: 100%
 			max-height: 40vh
-			min-height: 124px
+			min-height: 106px
+			resize: none
 
 		&:required
 			
@@ -177,20 +181,22 @@ textarea.default-input__input
 					color: red
 
 	&__label
-		font-size: em(12)
-		color: #919191
-		margin: 0 0 10px
+		color: #fff
+		margin: 0 0 13px
 
 		&--file
-			position: absolute -1px
-			background: url("../img/ico-file.svg") right 22px center no-repeat
+			flex: none
+			position: static
+			background: var(--thrid-color)
+			padding: 13px 25px 15px
 			cursor: pointer
+			
 
 	&__error
 		position: absolute calc(100% + 10px) 0 * *
 		font-size: em(12)
 		line-height: em(16)
-		color: var(--main-color)
+		color: red
 		trasition: opacity .3s ease
 		opacity: 0
 		pointer-events: none
