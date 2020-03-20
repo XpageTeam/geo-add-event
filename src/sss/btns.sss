@@ -1,11 +1,11 @@
 .default-btn
 	display: inline-flex
 	align-items: center
+	justify-content: center
 	white-space: nowrap
-	border-radius: 6px
-	border: 1px solid var(--main-color)
 	font-weight: 500
-	transition: background-color .4s ease, color .4s ease, border-color .4s ease
+	border: none
+	transition: background-color .4s ease, color .4s ease
 	font-size: em(14)
 	padding: em(12) em(29) em(13)
 	line-height: inherit
@@ -27,12 +27,12 @@
 		margin-right: 12px
 
 	&:not(&--bordered)
-		color: #fff var(--main-color)
+		color: #fff var(--thrid-color)
 
 		&:hover, &:focus
 
 			&:not(:active)
-				background-color: lighten(#2CAC6E, .1)
+				background-color: lighten(#9eadd6, .1)
 
 	&--bordered
 		color: var(--main-color)

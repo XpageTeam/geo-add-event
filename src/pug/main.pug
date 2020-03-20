@@ -14,11 +14,30 @@ html(lang="ru")
 							a.logo(href="#")
 								include ../img/logo.svg
 						.head__city
-
+							city-select(:new-city-link="'#'", :cur-city-id="0", :cities-list="[{id: 0, href: '#', name: 'Анапа', marked: false}, {id: 1, href: '#', name: 'Москва', marked: true}, {id: 2, href: '#', name: 'Челябинск', marked: false}, {id: 3, href: '#', name: 'Владивосток', marked: false}, ]")
 						.head__link
 							a.h-link(href="#") Перейти на сайт
 			main.event-add__content
-				.event-content
+				.wrapper
+					.event-content
+						figure.event-content__img
+							img(src="img/photos/add-event-img.jpg")
+						.event-content__desc
+							.ed-desc
+								.ed-desc__item
+									.ed-desc__item-title Название события
+									.ed-desc__item-text GEO.PRO - birthday
+								.ed-desc__item
+									.ed-desc__item-title Место проведения
+									.ed-desc__item-text БАР 55’61
+								.ed-desc__item
+									.ed-desc__item-title Дата профедения
+									.ed-desc__item-text 30 марта
+								.ed-desc__item
+									.ed-desc__item-title Описание события
+									.ed-desc__item-description
+										p «Тык» на дату и ставим напоминалочку, что 27 марта мы празднуем день перерождения из старой доброй и всем известной Geometria в новый крупный медиахолдинг GEO.PRO.
+										p Sasha Khizhnyakov — DJ, селектор и продюсер, ставший заметной фигурой на отечественном музыкальном рынке, под руководством которого на протяжении 12 лет выходят весьма успешные музыкальные проекты, лейблы, релизы, радиошоу и весьма редкие вечеринки. Вечеринки редкие, поэтому у вас есть прекрасная возможность поймать в баре 55'61 владельца Electronica Records!
 			aside.event-add__form
 				.event-form
 					form(action="#")

@@ -66,6 +66,8 @@
       "last 1 ie version"
    ],
    "dependencies": {
-      "imask": "^6.0.3"
+      "imask": "^6.0.3",
+      "jquery": "^3.4.1",
+      "vue": "^2.6.11"
    }
 }

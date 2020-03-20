@@ -1,0 +1,212 @@
+.head
+
+	&__logo
+
+		&-city
+			margin: 18px 0 0
+
+.city-select
+
+	&__current
+		cursor: pointer
+		position: relative
+		display: inline-block
+		font-size: 14px
+		font-family: "Formular"
+
+		&:after
+			content: ""
+			position: absolute calc(50% - 3px) * * calc(100% + 6px)
+			border-right: 1px solid #fff
+			border-bottom: 1px solid #fff
+			transform: rotateZ(45deg)
+			size: 5px
+
+.city-popup
+	display: none
+	background: #151515
+	padding: 40px 60px 45px
+	width: 910px
+	max-width: 100%
+	font-family: "Formular"
+
+	&__title
+		font-size: 24px
+		margin: 0 0 50px
+
+	&__content
+
+		&-search
+			margin: 0 0 46px
+
+		&-list
+			overflow-y: auto
+			max-height: vh(500)
+			-webkit-overflow-scrolling: touch
+
+			&::-webkit-scrollbar 
+				width: 13px
+
+				&-track, &-thumb
+					border-left: 10px solid #151515
+
+				&-track
+					background: #6C6A6A
+
+				&-thumb
+					background: #fff
+
+.city-search
+	display: flex
+
+	&__btn
+		flex: none
+		margin-left: 60px
+
+	&__input
+		flex: 1 1 auto
+
+		.default-input
+
+			&__input
+				width: 100%
+				border: none
+				background: url("../img/ico-city-search.svg") left center no-repeat
+				border-bottom: 1px solid #6C6A6A
+				transition: border-color .3s 
+				color: #fff
+				padding: 8px 34px 19px
+
+				&::-webkit-input-placeholder
+					color: #737373 !important
+
+				&:-moz-placeholder
+					color: #737373 !important
+
+				&::-moz-placeholder
+					color: #737373 !important
+
+				&:-ms-input-placeholder
+					color: #737373 !important
+
+.cp-list
+	column-count: 3
+	column-gap: 72px
+
+	&__item
+		font-size: 16px
+		color: #a3a3a3
+		line-height: calc(24 / 16)
+		break-inside: avoid
+
+		&:not(&--active)
+			cursor: pointer
+			transition: color .3s ease
+
+			&:hover
+				color: #fff
+
+		&--marked
+			text-transform: uppercase
+			color: #fff
+			font-weight: bold
+
+		&--active
+			border-bottom: 1px solid currentColor
+			display: inline-block
+
+		&:not(:first-child)
+			margin: 22px 0 0
+
+
+
+@media (max-width: 1000px) and (min-width: 660px)
+	.city-popup
+		padding: 30px 20px
+
+		&__title
+			font-size: 20px
+			margin: 0 0 30px
+
+	.cp-list
+		column-gap: 30px
+
+@media (max-width: 660px)
+	.city-popup
+		padding: 30px 28px 32px
+		position: relative
+		height: 100%
+
+		&__title
+			font-size: 20px
+			margin: 0 0 22px
+
+		&__content
+			height: calc(100% - 48px)
+
+			&-search
+				margin: 0 0 40px
+
+			&-list
+				height: calc(100% - 133px)
+				max-height: none
+
+	.cp-list
+		column-count: 1
+
+		&__item
+
+			&:not(:first-child)
+				margin: 8px 0 0
+
+	.city-search
+		
+		&__btn
+			margin: 0
+			position: absolute
+			left: 0
+			right: 0
+			bottom: 0
+
+			.default-btn
+				text-align: center
+				width: 100%
+
+body.white-color
+
+	.city-popup
+		background: #fff
+
+		&__content
+
+			&-list
+
+				&::-webkit-scrollbar
+
+					&-track, &-thumb
+						border-color: #fff
+
+					&-track
+						background-color: #DCDCDC
+
+					&-thumb
+						background-color: #000
+
+	.city-search
+
+		&__input
+
+			.default-input
+
+				&__input
+					border-color: #000
+
+		&__btn
+
+			.default-btn
+				background-color: #000
+
+	.cp-list
+		
+		&__item
+			color: #000 !important
