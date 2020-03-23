@@ -8,7 +8,7 @@ export default {
 			type: String,
 			default: ""
 		},
-		curCityID: {
+		curCityId: {
 			type: Number,
 			default: 0
 		}
@@ -23,10 +23,10 @@ export default {
 			});
 		},
 		selectCity(city){
-			if (city.id == this.curCityID)
+			if (city.id == this.curCityId)
 				return;
 
-			location.href(city.href);
+			location.href = city.href;
 		}
 	},
 	computed: {
@@ -34,7 +34,7 @@ export default {
 			return this.citiesList.filter(city => ~city.name.toLowerCase().indexOf(this.citySearchInput.toLowerCase()));
 		},
 		curCity(){
-			return this.citiesList.filter(city => city.id == this.curCityID)[0];
+			return this.citiesList.filter(city => city.id == this.curCityId)[0];
 		}
 	},
 	template: '\
@@ -62,7 +62,7 @@ export default {
 									v-for="(city, key) in cities" \
 									:key="key" \
 									class="cp-list__item" \
-									:class="{\'cp-list__item--active\': city.id == curCityID, \'cp-list__item--marked\': city.marked}"\
+									:class="{\'cp-list__item--active\': city.id == curCityId, \'cp-list__item--marked\': city.marked}"\
 									@click="selectCity(city)"\
 								>\
 									{{ city.name }}\
