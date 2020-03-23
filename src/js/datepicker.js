@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", e => {
 		require("jquery-ui/ui/i18n/datepicker-en-GB.js");
 })
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("VUELoaded", () => {
 	$(".date-input").datepicker({
 		language: BX.message('SITE_LANG') == 'RU' ? 'ru' : "en",
 		dateFormat: "dd.mm.yy",
