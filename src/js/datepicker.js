@@ -24,7 +24,13 @@ document.addEventListener("VUELoaded", () => {
 		changeMonth: true,
 		changeYear: true,
 		onSelect(dateText, inst){
-			$(".date-input").val(dateText).trigger("change");
+			
+			// $(".date-input").val(dateText).trigger("change");
+
+			const evt = document.createEvent("HTMLEvents");
+
+			evt.initEvent('input', true, true)
+			inst.input[0].dispatchEvent(evt);
 
 			$(".date-input").datepicker("hide");
 		},

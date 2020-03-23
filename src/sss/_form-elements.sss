@@ -109,22 +109,22 @@ textarea.default-input__input
 		size: 100% 49px
 		transition: border-color .3s ease
 
+		&--error
+
+			&:not(:focus)
+				color: #EB5757
+				border-color: #EB5757
+
+			~ .default-input
+
+				&__error
+					opacity: 1
+
 		&:not(&--select)
 			padding: 17px 16px
 
 		&:not(.default-input__input--textarea)
 			max-height: 53px
-
-		&--error
-
-			&:not(:focus, :valid)
-				color: #EB5757
-				border-color: currentColor
-
-				~ .default-input
-
-					&__error
-						opacity: 1
 
 		&:focus
 			border-color: var(--thrid-color)
@@ -197,7 +197,7 @@ textarea.default-input__input
 		font-size: em(12)
 		line-height: em(16)
 		color: red
-		trasition: opacity .3s ease
+		transition: opacity .3s ease
 		opacity: 0
 		pointer-events: none
 
