@@ -6,6 +6,7 @@ import "./datepicker.js";
 
 window.jQuery = $;
 window.$ = $;
+window.Vue = Vue;
 
 Vue.component("city-select", citySelect);
 
