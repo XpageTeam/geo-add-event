@@ -110,7 +110,7 @@ gulp.task('imagemin', () =>
 
 
 gulp.task("deploy:css", () => 
-	gulp.src("docs/css/*.*", {since: gulp.lastRun("postcss")})
+	gulp.src("docs/css/*.*")
 		.pipe(sftp({
 			host: connectionSettings.server.host,
 			user: connectionSettings.server.user,
