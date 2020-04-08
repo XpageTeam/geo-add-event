@@ -10,6 +10,7 @@
 	padding: em(12) em(29) em(13)
 	line-height: inherit
 	cursor: pointer
+	position: relative
 
 	svg
 		fill: currentColor
@@ -25,6 +26,13 @@
 
 	> svg
 		margin-right: 12px
+
+	&__input
+		opacity: 0
+		border: none
+		size: 100%
+		position: absolute 0
+		z-index: 5
 
 	&:not(&--bordered)
 		color: #fff var(--thrid-color)
