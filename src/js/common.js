@@ -13,9 +13,9 @@ Vue.component("city-select", citySelect);
 require("./jquery.fancybox.js");
 
 document.addEventListener("DOMContentLoaded", function(){
-	new Vue({
-		el: ".head__city"
-	});
+	// new Vue({
+	// 	el: ".head__city"
+	// });
 	
 });
 
