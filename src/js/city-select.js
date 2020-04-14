@@ -18,6 +18,7 @@ export default {
 	}),
 	methods: {
 		showCityPopup(){
+			console.log(123);
 			$.fancybox.open({
 				src: "#city"
 			});
